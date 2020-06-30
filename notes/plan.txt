@@ -1,0 +1,33 @@
+1. Develop sandbox
+2. Develop MVP
+3. Launch
+
+Sandbox:
+Load map and powers.
+Allow arbitrary population of armies/fleets for each power.
+Year/season.
+DATC-compliant.
+
+Map:
+Army/fleet SVG
+Power colors
+
+Interface:
+How to make moves?
+Map and panel on right.
+Panel displays year/season, powers and number of sc, armies, fleets.
+Click on location you control on map and it opens up options in panel {move, support, hold, convoy, build, destroy, retreat}.
+For sandbox: can arbitrarily delete/create on location.
+
+Each location on map is clickable and may contain an army or fleet. Overlay arrows for prepared orders.
+    Move arrow: directed from A to B
+    Support arrow: directed from A to B and dashed to C
+    Hold: circle around unit
+    Convoy: non-directed arrow from A to C through B (current location)
+    Build: + sign
+    Destroy: x sign
+    Retreat: directed from A to B
+
+    If multiple arrows from A to B then spread them.
+
+

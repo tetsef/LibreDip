@@ -1,0 +1,101 @@
+Plan:
+1. Read rules
+2. Look into current developments
+...webDiplomacy
+...Backstabbr
+...DATC-compliant adjudicator: https://github.com/zond/godip
+...See: http://uk.diplom.org/pouch/Zine/S2009M/Kruijswijk/DipMath_Chp1.htm
+3. Plan development
+...React/Node/Mongo --> MERN
+...Plan database
+...Plan backend/API
+...Design frontend
+...Move forward with development
+
+Original map:
+56 land and 19 sea regions
+42 land are divided between 7 powers and 14 land are left neutral
+34 land contain supply centers
+... 22 considered "home" supply centers
+... 12 start in neutral territory
+
+Britian starts with 2 fleets 1 army
+Russia starts with 2 armies 2 fleets
+Rest start with 2 armies 1 fleet
+
+Moves are revealed and put into effect simultaneously
+Begin in 1901. Each year divided into Spring and Fall.
+
+---
+Models
+---
+Map:
+    {provinces}
+
+Province:
+    isSupplyCenter
+        isHomeSupplyCenter
+    isSea or isLand or isCoastal
+    isOccupied by a unit/power
+        owned by a player
+
+Units:
+    isArmy or isFleet
+    province
+    owned by a player
+
+Players:
+    power (eg. England)
+    name
+    numSupplyCenters
+
+Phase:
+    year
+    season (spring, fall, winter)
+
+Move:
+    season
+    origin_province
+    target_province
+    support_level
+
+    Hold:
+        origin_province == target_province
+    Attack:
+        origin_province != target_province
+    Support:
+        # constraint: origin_province borders target_province
+        # to hold, to move
+        second_target_province
+        to_hold:
+            target_province == second_target_province
+        to_move:
+            target_province != second_target_province
+        # Note that a unit occupying the province into which the support is directed cannot cut support,
+        # unless its attack successfully dislodges the supporting unit. 
+    Convoy:
+        constraint:
+        ...origin_province must be a fleet in sea
+        ...target_province must be an army
+
+Variant:
+    Map
+    Adjudication period
+
+Games:
+    isActive
+    {Players}
+    Variant
+
+---
+MVP
+---
+User authentication. List of users.
+Create rooms. Invite by username/email.
+Adjudication / DATC compliant.
+Messaging system for press-games.
+Standard Map and powers. Standard win conditions (including draw).
+Variants on:
+    number of players (2-7)
+    no-press / press (communication/negotiation)
+    time (blitz)
